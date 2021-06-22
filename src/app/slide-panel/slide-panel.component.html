@@ -1,0 +1,17 @@
+<ng-container *ngIf="panelInfo$ | async as panelInfo">
+  <div
+    class="slide-panel__content"
+    ngClass="slide-panel__content--{{ panelInfo.isOpen ? 'shown' : 'hidden' }}"
+  >
+    <ng-content></ng-content>
+  </div>
+  <button
+    class="slide-panel__toggle-button"
+    ngClass="slide-panel__toggle-button--{{ panelInfo.isOpen ? 'opened' : 'closed' }}"
+    (click)="togglePanel()"
+  >
+    <mat-icon
+      class="icon-button__icon--team slide-panel__toggle-icon"
+    >{{ panelInfo.toggleIcon }}</mat-icon>
+  </button>
+</ng-container>

@@ -1,0 +1,14 @@
+%tooltip {
+  background: var(--tooltip-background-colour);
+  color: var(--tooltip-text-colour);
+}
+
+%tooltip--large {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+%tooltip--small {
+  font-size: 12px;
+  padding: 6px 10px;
+}

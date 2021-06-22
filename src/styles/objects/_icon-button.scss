@@ -1,0 +1,29 @@
+@import '../shared/variables';
+@import '../objects/highlight';
+
+%icon-area {
+  align-items: center;
+  color: var(--icon-colour);
+  display: flex;
+  min-height: $icon-area-size;
+  justify-content: center;
+  line-height: 1;
+  min-width: $icon-area-size;
+}
+
+%icon-button {
+  @extend %icon-area;
+  cursor: pointer;
+}
+
+mat-icon.icon-button__icon--team {
+  font-size: $team-icon-size;
+  height: $team-icon-size;
+  width: $team-icon-size;
+}
+
+mat-icon.icon-button__icon--player {
+  font-size: $player-icon-size;
+  height: $player-icon-size;
+  width: $player-icon-size;
+}

@@ -1,0 +1,64 @@
+@import '../shared/variables';
+@import '../objects/highlight';
+
+.labels {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  padding-top: 32px;
+}
+
+.labels__header {
+  align-items: center;
+  color: var(--panel-header-text-colour);
+  display: flex;
+  flex: none;
+  font-size: 16px;
+  height: $icon-area-size;
+  padding-left: 16px;
+  white-space: nowrap;
+}
+
+.labels__labels-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.labels__label {
+  display: flex;
+  font-size: $player-label-font-size;
+  height: $icon-area-size;
+}
+
+.labels__label-index {
+  align-items: center;
+  color: var(--label-index-colour);
+  display: flex;
+  flex: none;
+  font-size: 14px;
+  font-weight: 200;
+  justify-content: flex-end;
+  padding-right: 8px;
+  width: 24px;
+}
+
+.labels__label-input {
+  @extend %highlightable--underline;
+  color: var(--player-label-colour);
+  flex: 1;
+  letter-spacing: 0.5px;
+  min-width: 0;
+}
+
+.labels__footer {
+  //border-top: var(--border);
+  display: flex;
+}
+
+.labels__add-label-button {
+  @extend %icon-button;
+  @extend %highlightable--underline;
+  flex: 1;
+}

@@ -1,0 +1,122 @@
+<ng-container *ngIf="toolbarInfo$ | async as toolbarInfo">
+  <div class="toolbar__buttons toolbar__buttons--centre">
+    <button
+      class="toolbar__button"
+      ngClass="toolbar__button--{{ toolbarInfo.isCollapsed ? 'large-icon' : 'labelled' }}"
+      [matTooltip]="toolbarInfo.isCollapsed ? 'Shuffle Teams' : ''"
+      matTooltipPosition="above"
+      [matTooltipClass]="{
+        'toolbar__button-tooltip': true,
+        'toolbar__button-tooltip--large': toolbarInfo.isCollapsed,
+        'toolbar__button-tooltip--small': !toolbarInfo.isCollapsed
+      }"
+      (click)="randomizeTeams()"
+    >
+      <mat-icon class="toolbar__randomize-teams-icon">swap_{{ toolbarInfo.isCollapsed ? 'vert' : 'horiz' }}</mat-icon>
+      <span
+        *ngIf="!toolbarInfo.isCollapsed"
+        class="toolbar__button-label"
+      >Shuffle Teams</span>
+    </button>
+
+    <button
+      class="toolbar__button"
+      ngClass="toolbar__button--{{ toolbarInfo.isCollapsed ? 'large-icon' : 'labelled' }}"
+      [matTooltip]="toolbarInfo.isCollapsed ? 'Scramble All Unpinned Players' : ''"
+      matTooltipPosition="above"
+      [matTooltipClass]="{
+        'toolbar__button-tooltip': true,
+        'toolbar__button-tooltip--large': toolbarInfo.isCollapsed,
+        'toolbar__button-tooltip--small': !toolbarInfo.isCollapsed
+      }"
+      (click)="randomizePlayers()"
+    >
+      <mat-icon class="toolbar__randomize-players-icon">shuffle</mat-icon>
+      <span
+        *ngIf="!toolbarInfo.isCollapsed"
+        class="toolbar__button-label"
+      >Scramble Players</span>
+    </button>
+
+    <button
+      class="toolbar__button"
+      ngClass="toolbar__button--{{ toolbarInfo.isCollapsed ? 'large-icon' : 'labelled' }}"
+      [matTooltip]="toolbarInfo.isCollapsed ? 'Copy Teams as Plain Text' : ''"
+      matTooltipPosition="above"
+      [matTooltipClass]="{
+        'toolbar__button-tooltip': true,
+        'toolbar__button-tooltip--large': toolbarInfo.isCollapsed,
+        'toolbar__button-tooltip--small': !toolbarInfo.isCollapsed
+      }"
+      (click)="copyTeamsToClipboard()"
+    >
+      <mat-icon class="toolbar__copy-teams-icon">content_copy</mat-icon>
+      <span
+        *ngIf="!toolbarInfo.isCollapsed"
+        class="toolbar__button-label"
+      >Copy as Plain Text</span>
+    </button>
+  </div>
+
+  <div class="toolbar__buttons toolbar__buttons--right">
+    <ng-container *ngIf="toolbarInfo.isCollapsed; else separateButtons">
+      <button
+        [matMenuTriggerFor]="overflowButtons"
+        class="toolbar__button toolbar__button--large-icon"
+        matTooltip="More Actions"
+        matTooltipPosition="above"
+        [matTooltipClass]="{
+          'toolbar__button-tooltip': true,
+          'toolbar__button-tooltip--large': toolbarInfo.isCollapsed,
+          'toolbar__button-tooltip--small': !toolbarInfo.isCollapsed
+        }"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu
+        #overflowButtons="matMenu"
+        class="toolbar__overflow-menu"
+      >
+        <button
+          mat-menu-item
+          class="toolbar__overflow-button toolbar__reset-app-button"
+          (click)="resetApp()"
+        >
+          <mat-icon class="toolbar__reset-app-icon">power_settings_new</mat-icon>
+          <span>Reset App</span>
+        </button>
+        <button
+          mat-menu-item
+          class="toolbar__overflow-button"
+          (click)="toggleTheme()"
+        >
+          <mat-icon>{{ getToggleThemeIcon(toolbarInfo.nextTheme) }}</mat-icon>
+          <span>Use {{ toolbarInfo.nextTheme | titlecase }} Theme</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-template #separateButtons>
+      <button
+        class="toolbar__button toolbar__button--unlabelled toolbar__reset-app-button"
+        matTooltip="Reset App"
+        matTooltipPosition="above"
+        matTooltipClass="toolbar__button-tooltip toolbar__button-tooltip--small"
+        (click)="resetApp()"
+      >
+        <mat-icon class="toolbar__reset-app-icon">power_settings_new</mat-icon>
+      </button>
+
+      <button
+        class="toolbar__button toolbar__button--unlabelled"
+        matTooltip="Use {{ toolbarInfo.nextTheme | titlecase }} Theme"
+        matTooltipPosition="above"
+        matTooltipClass="toolbar__button-tooltip toolbar__button-tooltip--small"
+        (click)="toggleTheme()"
+      >
+        <mat-icon>{{ getToggleThemeIcon(toolbarInfo.nextTheme) }}</mat-icon>
+      </button>
+    </ng-template>
+  </div>
+</ng-container>

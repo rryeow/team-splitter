@@ -1,0 +1,17 @@
+$snack-bar__margin: 12px;
+$snack-bar__margin--footer-offset: 56px + $snack-bar__margin; // 56px footer
+
+.mat-snack-bar-container.ts-snack-bar {
+  @extend %overlay-shadow;
+  background: var(--snack-bar-background-colour);
+  color: var(--snack-bar-text-colour);
+  margin: $snack-bar__margin;
+}
+
+.mat-snack-bar-container.ts-snack-bar--footer-offset {
+  margin-bottom: $snack-bar__margin--footer-offset;
+}
+
+.mat-snack-bar-handset > .mat-snack-bar-container.ts-snack-bar--footer-offset {
+  margin-bottom: $snack-bar__margin--footer-offset;
+}

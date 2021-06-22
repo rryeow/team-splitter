@@ -1,0 +1,11 @@
+@import '../shared/variables';
+
+%highlightable--underline {
+  border: 1px solid transparent;
+  box-sizing: border-box;
+
+  &:focus, &:hover {
+    color: var(--player-highlight-colour);
+    border-bottom: 1px solid var(--player-highlight-colour);
+  }
+}

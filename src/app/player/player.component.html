@@ -1,0 +1,38 @@
+<ng-content></ng-content>
+<ng-container *ngIf="playerInfo$ | async as playerInfo">
+  <div class="player__text-area">
+    <div *ngIf="playerInfo.label" class="player__label">{{ playerInfo.label }}</div>
+    <input
+      #nameInput
+      [value]="playerInfo.player?.playerName || ''"
+      type="text"
+      class="player__name-input"
+      [placeholder]="playerInfo.placeholderPlayerName"
+      (blur)="updatePlayerName(nameInput.value)"
+    >
+  </div>
+  <button
+    *ngIf="!playerInfo.isInPool"
+    matRipple
+    [matRippleCentered]="true"
+    [ngClass]="{ 'player__icon-button--checked': playerInfo.player?.isPinned }"
+    class="player__pin-button"
+    (click)="togglePinnedState()"
+  >
+    <mat-icon
+      [fontSet]="playerInfo.player?.isPinned ? 'material-icons' : 'material-icons-outlined'"
+      class="icon-button__icon--player"
+    >push_pin</mat-icon>
+  </button>
+  <button
+    matRipple
+    [matRippleCentered]="true"
+    class="player__demote-button"
+    (click)="demotePlayer()"
+  >
+    <mat-icon
+      class="icon-button__icon--player"
+    >{{ playerInfo.isInPool ? 'delete' : 'remove' }}</mat-icon>
+  </button>
+</ng-container>
+

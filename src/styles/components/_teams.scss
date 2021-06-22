@@ -1,0 +1,100 @@
+@import '../shared/variables';
+@import '../objects/icon-button';
+
+.teams {
+  background: var(--teams-background-colour);
+  display: flex;
+  flex: 1;
+  grid-area: teams;
+  min-height: 0;
+  min-width: 0;
+}
+
+%teams__drop-list {
+  display: flex;
+  flex: 1;
+}
+
+.teams__drop-list {
+  &--horizontal {
+    @extend %teams__drop-list;
+    flex-direction: row;
+    overflow-x: auto;
+    .team {
+      width: 300px;
+    }
+  }
+  &--vertical {
+    @extend %teams__drop-list;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
+
+.teams__drop-list-content {
+  display: flex;
+  flex: 1;
+
+  &--horizontal {
+    flex-direction: row;
+    min-width: auto;
+    width: min-content;
+    padding: 16px 4px;
+
+    > * {
+      margin: 0 4px;
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+    height: min-content;
+    min-height: auto;
+    padding: 6px;
+
+    > * {
+      margin: 6px 0;
+    }
+  }
+
+  > * {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+}
+
+.teams__add-team-button {
+  @extend %icon-button;
+  flex: 1;
+
+  &:focus, &:hover {
+    > .teams__add-team-icon {
+      background: var(--team-background-colour);
+    }
+  }
+
+  > .teams__add-team-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &--horizontal > .teams__add-team-icon {
+    height: 100%;
+    width: $icon-area-size;
+  }
+  &--vertical > .teams__add-team-icon {
+    height: $icon-area-size;
+    width: 100%;
+  }
+}
+
+button.teams__add-team-button {
+  &--horizontal {
+    justify-content: flex-start;
+  }
+  &--vertical {
+    align-items: flex-start;
+    justify-content: center;
+  }
+}

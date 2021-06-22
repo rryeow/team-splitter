@@ -1,0 +1,71 @@
+<ng-container *ngIf="teamInfo$ | async as teamInfo">
+  <!-- Header -->
+  <div ngClass="team__header--{{ teamInfo.appLayout === 'wide' ? 'vertical' : 'horizontal' }}">
+    <ng-content></ng-content>
+    <input
+      type="text"
+      ngClass="team__team-name-input--{{ teamInfo.appLayout === 'wide' ? 'vertical' : 'horizontal' }}"
+      [placeholder]="teamInfo.placeholderTeamName"
+      [formControl]="teamNameControl"
+      (blur)="trimControlValue(teamNameControl)"
+    >
+    <button
+      class="team__delete-team-button"
+      (click)="deleteTeam()"
+    >
+      <mat-icon class="icon-button__icon--team">clear</mat-icon>
+    </button>
+  </div>
+
+  <!-- Drop list -->
+  <div
+    #teamDropList
+    cdkDropList
+    [cdkDropListConnectedTo]="teamInfo.connectedToIds"
+    [cdkDropListData]="teamInfo.players"
+    [id]="id"
+    class="team__drop-list"
+    (cdkDropListEntered)="dragPlayerEnterDropList()"
+    (cdkDropListExited)="dragPlayerExitDropList()"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <ts-player
+      *ngFor="let player of teamInfo.players; trackBy: trackById"
+      cdkDrag
+      cdkDragPreviewClass="team__player-drag-preview"
+      [id]="player.id"
+      (cdkDragStarted)="startDragPlayer($event)"
+      (cdkDragEnded)="endDragPlayer()"
+    >
+      <div cdkDragHandle class="player__drag-area">
+        <mat-icon class="icon-button__icon--player">drag_indicator</mat-icon>
+      </div>
+    </ts-player>
+    <div
+      *ngIf="teamInfo.showEmptyListPlaceholder"
+      class="player-list__empty-drop-list-placeholder"
+    >
+      <span>No players</span>
+    </div>
+  </div>
+
+  <!-- New player -->
+  <div class="team__new-player">
+    <input
+      type="text"
+      class="team__new-player-name-input"
+      placeholder="Add new player…"
+      [formControl]="newPlayerNameControl"
+      (blur)="trimControlValue(newPlayerNameControl)"
+      (keydown.enter)="addNewPlayerIfNotComposing($event, teamDropList)"
+    >
+    <button
+      matRipple
+      [matRippleCentered]="true"
+      class="team__new-player-add-button"
+      (click)="addNewPlayer(teamDropList)"
+    >
+      <mat-icon class="icon-button__icon--player">add</mat-icon>
+    </button>
+  </div>
+</ng-container>

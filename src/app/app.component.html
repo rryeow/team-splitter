@@ -1,0 +1,14 @@
+<ng-container *ngIf="layout$ | async as layout">
+  <div class="app__editor">
+    <ts-slide-panel #labelsPanel panelEdge="left">
+      <ts-labels></ts-labels>
+    </ts-slide-panel>
+    <ts-teams></ts-teams>
+    <ts-slide-panel #poolPanel panelEdge="right">
+      <ts-pool></ts-pool>
+    </ts-slide-panel>
+  </div>
+  <div class="app__footer">
+    <ts-toolbar></ts-toolbar>
+  </div>
+</ng-container>

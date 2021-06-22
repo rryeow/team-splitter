@@ -1,0 +1,52 @@
+@import '../shared/material';
+@import '../shared/variables';
+@import '../objects/icon-button';
+@import '../objects/highlight';
+
+.player {
+  display: flex;
+  flex: none;
+  font-size: $player-font-size;
+  height: $player-height;
+}
+
+.player__drag-area {
+  @extend %icon-area;
+  cursor: move;
+}
+
+.player__text-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.player__label {
+  color: var(--player-label-colour);
+  font-size: $player-label-font-size;
+  margin-bottom: -6px;
+  padding-top: 4px;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.player__name-input {
+  @extend %highlightable--underline;
+  color: var(--text-colour);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player__pin-button,
+.player__demote-button {
+  @extend %icon-button;
+  @extend %highlightable--underline;
+
+  &.player__icon-button--checked {
+    color: var(--player-highlight-colour);
+  }
+}

@@ -1,0 +1,145 @@
+@import '../shared/variables';
+@import '../objects/icon-button';
+@import '../objects/overlay-shadow';
+@import '../objects/tooltip';
+
+$toolbar__button-size--small: 36px;
+$toolbar__button-size--large: $icon-area-size;
+
+.toolbar {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: '. toolbar-centre toolbar-right';
+  height: $toolbar__button-size--small * 2;
+  padding: 0 18px;
+}
+
+.toolbar__buttons {
+  align-items: center;
+  display: flex;
+
+  &--centre {
+    grid-area: toolbar-centre;
+    justify-content: center;
+  }
+  &--right {
+    grid-area: toolbar-right;
+    justify-content: flex-end;
+  }
+
+  > .toolbar__button:not(:first-child) {
+    margin-left: 12px;
+  }
+}
+
+.toolbar__overflow-menu {
+  @extend %overlay-shadow;
+  background: var(--overflow-menu-background-colour);
+  color: var(--text-colour);
+}
+
+%toolbar__button {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--text-colour);
+  cursor: pointer;
+  display: flex;
+  flex: none;
+  font-size: 14px;
+
+  &:focus, &:hover {
+    background: var(--toolbar-button-highlight-colour);
+  }
+}
+
+.mat-menu-item.toolbar__overflow-button {
+  @extend %toolbar__button;
+  > .mat-icon {
+    @extend %toolbar-icon--large;
+  }
+}
+
+.toolbar__button {
+  @extend %toolbar__button;
+  border-radius: 4px;
+  justify-content: center;
+
+  &--unlabelled {
+    height: $toolbar__button-size--small;
+    width: $toolbar__button-size--small;
+    > .mat-icon {
+      @extend %toolbar-icon--small;
+    }
+  }
+  &--labelled {
+    height: $toolbar__button-size--small;
+    padding-left: 12px;
+    padding-right: 16px;
+    > .mat-icon {
+      @extend %toolbar-icon--small;
+    }
+  }
+  &--large-icon {
+    height: $toolbar__button-size--large;
+    width: $toolbar__button-size--large;
+    > .mat-icon {
+      @extend %toolbar-icon--large;
+    }
+  }
+}
+
+%toolbar-icon--small {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+%toolbar-icon--large {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+}
+
+.toolbar__button-label {
+  margin-left: 8px;
+}
+
+.mat-tooltip.toolbar__button-tooltip {
+  @extend %tooltip;
+
+  &--large {
+    @extend %tooltip--large;
+  }
+  &--small {
+    @extend %tooltip--small;
+  }
+}
+
+.toolbar__randomize-teams-icon {
+  color: var(--randomize-teams-icon-colour);
+}
+
+.toolbar__randomize-players-icon {
+  color: var(--randomize-players-icon-colour);
+}
+
+.toolbar__copy-teams-icon {
+  color: var(--icon-colour);
+}
+
+.toolbar__reset-app-button,
+.mat-menu-item.toolbar__reset-app-button {
+  > .toolbar__reset-app-icon {
+    color: var(--destructive-action-colour);
+  }
+
+  &:focus, &:hover {
+    background: var(--destructive-action-colour);
+    color: var(--overflow-menu-background-colour);
+
+    >.toolbar__reset-app-icon {
+      color: var(--overflow-menu-background-colour);
+    }
+  }
+}

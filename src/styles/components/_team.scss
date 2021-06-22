@@ -1,0 +1,118 @@
+@import '../shared/variables';
+@import '../objects/icon-button';
+@import '../objects/highlight';
+@import 'player-list';
+
+$team__input-side-padding: 16px;
+
+.team {
+  background: var(--team-background-colour);
+  display: flex;
+  flex: none;
+  flex-direction: column;
+}
+
+.team__player-drag-preview {
+  background: var(--team-background-colour);
+}
+
+%team__header {
+  grid-area: team__header;
+}
+
+.team__header {
+  &--horizontal {
+    @extend %team__header;
+    display: flex;
+  }
+  &--vertical {
+    @extend %team__header;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'team__drag-handle team__drag-handle'
+      'team__team-name team__delete-team-button';
+  }
+}
+
+%team__drag-handle {
+  align-items: center;
+  color: var(--icon-colour);
+  display: flex;
+  grid-area: team__drag-handle;
+  justify-content: center;
+}
+
+.team__drag-handle {
+  &--horizontal {
+    @extend %team__drag-handle;
+    cursor: ew-resize;
+    height: 36px;
+  }
+  &--vertical {
+    @extend %team__drag-handle;
+    cursor: ns-resize;
+    width: $icon-area-size;
+  }
+}
+
+%team__team-name-input {
+  box-sizing: border-box;
+  color: var(--team-name-text-colour);
+  flex: 1;
+  letter-spacing: 1px;
+  font-size: $team-font-size;
+  grid-area: team__team-name;
+  height: $icon-area-size;
+}
+
+.team__team-name-input {
+  &--horizontal {
+    @extend %team__team-name-input;
+  }
+  &--vertical {
+    @extend %team__team-name-input;
+    padding-left: $team__input-side-padding;
+  }
+}
+
+.team__delete-team-button {
+  @extend %icon-button;
+  grid-area: team__delete-team-button;
+
+  &:focus, &:hover {
+    color: var(--teams-background-colour);
+    background: var(--destructive-action-colour);
+  }
+}
+
+.team__drop-list {
+  @extend %player-list__drop-list;
+  border-top: var(--border);
+  border-bottom: var(--border);
+  grid-area: team__players;
+  min-height: $player-height;
+}
+
+.team__new-player {
+  display: flex;
+  grid-area: team__new-player;
+}
+
+.team__new-player-name-input {
+  @extend %highlightable--underline;
+  color: var(--text-colour);
+  flex: 1;
+  font-size: $player-font-size;
+  padding-left: $team__input-side-padding;
+
+  &::placeholder {
+    user-select: none;
+  }
+}
+
+.team__new-player-add-button {
+  @extend %icon-button;
+  @extend %highlightable--underline;
+}

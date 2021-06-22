@@ -1,0 +1,55 @@
+html {
+  --mat-ripple-background-colour: rgba(0, 0, 0, 0.04);
+
+  --app-background-colour: #e8e8e8;
+  --teams-background-colour: #e8e8e8;
+  --team-background-colour: #f0f0f0;
+  --footer-background-colour: #e8e8e8;
+  --border-colour: #d8d8d8;
+  --border: 1px solid var(--border-colour);
+  --icon-colour: #b0b0b0;
+  --label-index-colour: #a0a0a0;
+  --overlay-background-colour: var(--text-colour);
+  --overlay-text-colour: var(--app-background-colour);
+  --panel-header-text-colour: #a0a0a0;
+  --placeholder-colour: #bcbcbc;
+  --placeholder-colour--focus: #c8c8c8;
+  --player-highlight-colour: var(--text-colour);
+  --player-label-colour: #a0a0a0;
+  --team-name-text-colour: #808080;
+  --text-colour: #505050;
+
+  --overflow-menu-background-colour: var(--team-background-colour);
+  --snack-bar-background-colour: var(--overlay-background-colour);
+  --snack-bar-text-colour: var(--overlay-text-colour);
+  --tooltip-background-colour: var(--overlay-background-colour);
+  --tooltip-text-colour: var(--overlay-text-colour);
+
+  --destructive-action-colour: hsl(0, 70%, 70%);
+
+  --toolbar-button-highlight-colour: rgba(0, 0, 0, 0.02);
+  --randomize-teams-icon-colour: hsl(140, 40%, 50%);
+  --randomize-players-icon-colour: hsl(220, 60%, 65%);
+}
+
+html[data-theme='dark'] {
+  --mat-ripple-background-colour: rgba(255, 255, 255, 0.04);
+
+  --app-background-colour: #181818;
+  --teams-background-colour: #181818;
+  --team-background-colour: #202020;
+  --footer-background-colour: #181818;
+  --border-colour: #303030;
+  --icon-colour: #606060;
+  --label-index-colour: #606060;
+  --panel-header-text-colour: #606060;
+  --placeholder-colour: #545454;
+  --placeholder-colour--focus: #484848;
+  --player-label-colour: #707070;
+  --team-name-text-colour: #909090;
+  --text-colour: #c0c0c0;
+
+  --destructive-action-colour: hsl(0, 40%, 50%);
+
+  --toolbar-button-highlight-colour: rgba(255, 255, 255, 0.04);
+}

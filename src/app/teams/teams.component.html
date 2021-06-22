@@ -1,0 +1,36 @@
+<div
+  *ngIf="teamsInfo$ | async as teamsInfo"
+  #teamsDropList
+  cdkDropList
+  [cdkDropListLockAxis]="teamsInfo.lockAxis"
+  [cdkDropListData]="teamsInfo.teams"
+  [cdkDropListOrientation]="teamsInfo.dropListOrientation"
+  [id]="id"
+  ngClass="teams__drop-list--{{ teamsInfo.dropListOrientation }}"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    class="teams__drop-list-content"
+    ngClass="teams__drop-list-content--{{ teamsInfo.dropListOrientation }}"
+  >
+    <ts-team
+      *ngFor="let team of teamsInfo.teams; trackBy: trackById"
+      cdkDrag
+      [id]="team.id"
+    >
+      <div
+        cdkDragHandle
+        ngClass="team__drag-handle--{{ teamsInfo.dropListOrientation }}"
+      >
+        <mat-icon class="team__drag-icon">drag_handle</mat-icon>
+      </div>
+    </ts-team>
+    <button
+      class="teams__add-team-button"
+      ngClass="teams__add-team-button--{{ teamsInfo.dropListOrientation }}"
+      (click)="addTeam(teamsInfo.dropListOrientation, teamsDropList)"
+    >
+      <mat-icon class="icon-button__icon--team teams__add-team-icon">add</mat-icon>
+    </button>
+  </div>
+</div>

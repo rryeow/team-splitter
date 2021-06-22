@@ -1,0 +1,28 @@
+<div class="labels__header">Player Labels</div>
+<div #labelsList class="labels__labels-list">
+  <div
+    *ngFor="let playerLabel of playerLabels$ | async; index as labelIndex; trackBy: trackByIndex"
+    class="labels__label"
+  >
+    <div class="labels__label-index">{{ labelIndex + 1 }}</div>
+    <input
+      #playerLabelInput
+      [ngModel]="playerLabel"
+      type="text"
+      class="labels__label-input"
+      placeholder="Label for Player {{ labelIndex + 1 }}"
+      (ngModelChange)="updatePlayerLabel(playerLabelInput.value, labelIndex)"
+      (blur)="updatePlayerLabel(playerLabelInput.value.trim(), labelIndex)"
+    >
+  </div>
+</div>
+<div class="labels__footer">
+  <button
+    matRipple
+    [matRippleCentered]="true"
+    class="labels__add-label-button"
+    (click)="addPlayerLabel(); scrollToEnd(labelsList)"
+  >
+    <mat-icon class="icon-button__icon--player">add</mat-icon>
+  </button>
+</div>

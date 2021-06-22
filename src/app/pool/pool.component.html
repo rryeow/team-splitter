@@ -1,0 +1,39 @@
+<div class="pool__header">
+  <div class="pool__title">Bench</div>
+  <button
+    class="pool__clear-pool-button"
+    (click)="clearPool()"
+  >
+    <mat-icon class="icon-button__icon--team">delete_sweep</mat-icon>
+  </button>
+</div>
+<div
+  *ngIf="poolInfo$ | async as poolInfo"
+  cdkDropList
+  [cdkDropListConnectedTo]="poolInfo.connectedToIds"
+  [cdkDropListData]="poolInfo.players"
+  [id]="id"
+  class="pool__drop-list"
+  (cdkDropListEntered)="dragPlayerEnterDropList()"
+  (cdkDropListExited)="dragPlayerExitDropList()"
+  (cdkDropListDropped)="drop($event)"
+>
+  <ts-player
+    *ngFor="let player of poolInfo.players; trackBy: trackById"
+    cdkDrag
+    cdkDragPreviewClass="pool__player-drag-preview"
+    [id]="player.id"
+    (cdkDragStarted)="startDragPlayer($event)"
+    (cdkDragEnded)="endDragPlayer()"
+  >
+    <div cdkDragHandle class="player__drag-area">
+      <mat-icon class="icon-button__icon--player">drag_indicator</mat-icon>
+    </div>
+  </ts-player>
+  <div
+    *ngIf="poolInfo.showEmptyListPlaceholder"
+    class="player-list__empty-drop-list-placeholder"
+  >
+    <span>No players</span>
+  </div>
+</div>

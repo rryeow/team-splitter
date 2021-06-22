@@ -1,0 +1,59 @@
+@import '../shared/variables';
+
+* {
+  min-height: 0;
+}
+
+html, body {
+  background: var(--app-background-colour);
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', 'sans-serif';
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  margin: 0;
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+button, input {
+  all: unset;
+}
+
+input {
+  min-width: 0;
+
+  &::placeholder {
+    color: var(--placeholder-colour);
+    font-weight: $placeholder-font-weight;
+  }
+
+  &:focus::placeholder {
+    color: var(--placeholder-colour--focus);
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app__editor {
+  display: flex;
+  flex: 1;
+}
+
+.app__footer {
+  background: var(--footer-background-colour);
+  border-top: var(--border);
+  display: flex;
+  flex: none;
+  grid-area: footer;
+}

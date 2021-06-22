@@ -1,0 +1,41 @@
+@import '../shared/variables';
+@import '../objects/icon-button';
+@import 'player-list';
+
+.pool {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  padding-top: 32px;
+}
+
+.pool__drop-list {
+  @extend %player-list__drop-list;
+}
+
+.pool__player-drag-preview {
+  background: var(--app-background-colour);
+}
+
+.pool__header {
+  align-items: center;
+  color: var(--panel-header-text-colour);
+  display: flex;
+  flex: none;
+  font-size: 16px;
+  height: $icon-area-size;
+  justify-content: space-between;
+  padding-left: 16px;
+  white-space: nowrap;
+}
+
+.pool__clear-pool-button {
+  @extend %icon-button;
+
+  &:focus, &:hover {
+    color: var(--teams-background-colour);
+    background: var(--destructive-action-colour);
+  }
+}

@@ -1,0 +1,23 @@
+%player-list__drop-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
+
+.player-list__empty-drop-list-placeholder {
+  align-items: center;
+  color: var(--placeholder-colour);
+  display: flex;
+  font-weight: $placeholder-font-weight;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  white-space: nowrap;
+  width: 100%;
+
+  > span {
+    user-select: none;
+  }
+}
